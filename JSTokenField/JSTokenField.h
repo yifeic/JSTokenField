@@ -32,11 +32,6 @@
 @class JSTokenButton;
 @protocol JSTokenFieldDelegate;
 
-extern NSString *const JSTokenFieldFrameDidChangeNotification;
-extern NSString *const JSTokenFieldNewFrameKey;
-extern NSString *const JSTokenFieldOldFrameKey;
-extern NSString *const JSDeletedTokenKey;
-
 @interface JSTokenField : UIView <UITextFieldDelegate>
 
 @property (nonatomic, readonly) JSBackspaceReportingTextField *textField;

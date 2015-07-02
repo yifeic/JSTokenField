@@ -28,12 +28,6 @@
 
 #import "JSTokenField.h"
 #import "JSTokenButton.h"
-#import <QuartzCore/QuartzCore.h>
-
-NSString *const JSTokenFieldFrameDidChangeNotification = @"JSTokenFieldFrameDidChangeNotification";
-NSString *const JSTokenFieldNewFrameKey = @"JSTokenFieldNewFrameKey";
-NSString *const JSTokenFieldOldFrameKey = @"JSTokenFieldOldFrameKey";
-NSString *const JSDeletedTokenKey = @"JSDeletedTokenKey";
 
 #define HEIGHT_PADDING 3
 #define WIDTH_PADDING 3
@@ -47,6 +41,7 @@ NSString *const JSDeletedTokenKey = @"JSDeletedTokenKey";
 @property (nonatomic, strong) NSMutableArray *tokens;
 
 @property (nonatomic, strong) JSTokenButton *deletedToken;
+@property (nonatomic) CGFloat selfHeight;
 
 - (JSTokenButton *)tokenWithString:(NSString *)string representedObject:(id)obj;
 - (void)deleteHighlightedToken;
@@ -86,10 +81,9 @@ NSString *const JSDeletedTokenKey = @"JSDeletedTokenKey";
 }
 
 - (void)commonSetup {
-    CGRect frame = self.frame;
     [self setBackgroundColor:[UIColor colorWithRed:0.9 green:0.9 blue:0.9 alpha:1.0]];
     
-    self.label = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 0, frame.size.height)];
+    self.label = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 0, DEFAULT_HEIGHT)];
     [self.label setBackgroundColor:[UIColor clearColor]];
     [self.label setTextColor:[UIColor colorWithRed:0.3 green:0.3 blue:0.3 alpha:1.0]];
     [self.label setFont:[UIFont fontWithName:@"Helvetica Neue" size:17.0]];
@@ -101,9 +95,7 @@ NSString *const JSDeletedTokenKey = @"JSDeletedTokenKey";
     
     self.tokens = [[NSMutableArray alloc] init];
     
-    frame.origin.y += HEIGHT_PADDING;
-    frame.size.height -= HEIGHT_PADDING * 2;
-    self.textField = [[JSBackspaceReportingTextField alloc] initWithFrame:frame];
+    self.textField = [[JSBackspaceReportingTextField alloc] initWithFrame:CGRectMake(0, HEIGHT_PADDING, self.frame.size.width, DEFAULT_HEIGHT)];
     [self.textField setDelegate:self];
     [self.textField setBorderStyle:UITextBorderStyleNone];
     [self.textField setBackground:nil];
@@ -307,16 +299,18 @@ NSString *const JSDeletedTokenKey = @"JSDeletedTokenKey";
 		token.center = tokenCenter;
 	}
 	
-	if (self.layer.presentationLayer == nil) {
-		[self setFrame:selfFrame];
-	}
-	else {
-		[UIView animateWithDuration:0.3
-						 animations:^{
-							 [self setFrame:selfFrame];
-						 }
-						 completion:nil];
-	}
+    if (fabs(selfFrame.size.height - self.selfHeight) > 0.01) {
+        self.selfHeight = selfFrame.size.height;
+        
+    	__weak JSTokenField *weak_self = self;
+        [[NSOperationQueue mainQueue] addOperationWithBlock:^{
+            [weak_self invalidateIntrinsicContentSize];
+        }];
+    }
+}
+
+- (CGSize)intrinsicContentSize {
+	return CGSizeMake(UIViewNoIntrinsicMetric, self.selfHeight);
 }
 
 - (void)toggle:(id)sender
@@ -329,25 +323,6 @@ NSString *const JSDeletedTokenKey = @"JSDeletedTokenKey";
 	JSTokenButton *token = (JSTokenButton *)sender;
 	[token setToggled:YES];
     [token becomeFirstResponder];
-}
-
-- (void)setFrame:(CGRect)frame
-{
-    CGRect oldFrame = self.frame;
-    
-	[super setFrame:frame];
-	
-	NSMutableDictionary *userInfo = [NSMutableDictionary dictionaryWithObject:[NSValue valueWithCGRect:frame] forKey:JSTokenFieldNewFrameKey];
-    [userInfo setObject:[NSValue valueWithCGRect:oldFrame] forKey:JSTokenFieldOldFrameKey];
-	if (self.deletedToken)
-	{
-		[userInfo setObject:self.deletedToken forKey:JSDeletedTokenKey]; 
-		self.deletedToken = nil;
-	}
-	
-	if (CGRectEqualToRect(oldFrame, frame) == NO) {
-		[[NSNotificationCenter defaultCenter] postNotificationName:JSTokenFieldFrameDidChangeNotification object:self userInfo:[userInfo copy]];
-	}
 }
 
 #pragma mark -
