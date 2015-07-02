@@ -21,8 +21,8 @@
 {
     [super viewDidLoad];
     self.field.delegate = self;
-    self.field.tokenImage = [UIImage imageNamed:@"tokenNormal"];
-    self.field.tokenSelectedImage = [UIImage imageNamed:@"tokenSelected"];
+    self.field.tokenImage = [[UIImage imageNamed:@"tokenNormal"] stretchableImageWithLeftCapWidth:14 topCapHeight:0];
+    self.field.tokenSelectedImage = [[UIImage imageNamed:@"tokenSelected"] stretchableImageWithLeftCapWidth:14 topCapHeight:0];
     
 }
 

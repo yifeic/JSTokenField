@@ -39,6 +39,10 @@
 @property (nonatomic, assign) id <JSTokenFieldDelegate> delegate;
 @property (nonatomic, strong) UIImage *tokenImage;
 @property (nonatomic, strong) UIImage *tokenSelectedImage;
+@property (nonatomic) CGFloat lineHeight;
+@property (nonatomic) CGFloat verticalMargin;
+@property (nonatomic) CGFloat horizontalMargin;
+@property (nonatomic) CGFloat lineSpacing;
 
 - (NSArray *)allTokens;
 

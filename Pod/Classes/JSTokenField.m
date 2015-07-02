@@ -81,14 +81,19 @@
 }
 
 - (void)commonSetup {
+    _lineHeight = 30;
+    _lineSpacing = 2;
+    _verticalMargin = 2;
+    _horizontalMargin = 2;
+    
     [self setBackgroundColor:[UIColor colorWithRed:0.9 green:0.9 blue:0.9 alpha:1.0]];
     
-    self.label = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 0, DEFAULT_HEIGHT)];
-    [self.label setBackgroundColor:[UIColor clearColor]];
-    [self.label setTextColor:[UIColor colorWithRed:0.3 green:0.3 blue:0.3 alpha:1.0]];
-    [self.label setFont:[UIFont fontWithName:@"Helvetica Neue" size:17.0]];
-    
-    [self addSubview:self.label];
+//    self.label = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 0, DEFAULT_HEIGHT)];
+//    [self.label setBackgroundColor:[UIColor clearColor]];
+//    [self.label setTextColor:[UIColor colorWithRed:0.3 green:0.3 blue:0.3 alpha:1.0]];
+//    [self.label setFont:[UIFont fontWithName:@"Helvetica Neue" size:17.0]];
+//    
+//    [self addSubview:self.label];
     
     //		self.layer.borderColor = [[UIColor blueColor] CGColor];
     //		self.layer.borderWidth = 1.0;
@@ -96,10 +101,11 @@
     self.tokens = [[NSMutableArray alloc] init];
     
     self.textField = [[JSBackspaceReportingTextField alloc] initWithFrame:CGRectMake(0, HEIGHT_PADDING, self.frame.size.width, DEFAULT_HEIGHT)];
+    self.textField.backgroundColor = [UIColor clearColor];
     [self.textField setDelegate:self];
     [self.textField setBorderStyle:UITextBorderStyleNone];
     [self.textField setBackground:nil];
-    [self.textField setBackgroundColor:[UIColor clearColor]];
+//    [self.textField setBackgroundColor:[UIColor clearColor]];
     [self.textField setContentVerticalAlignment:UIControlContentVerticalAlignmentCenter];
     
     //		[self.textField.layer setBorderColor:[[UIColor redColor] CGColor]];
@@ -235,30 +241,35 @@
 {
 	CGRect currentRect = CGRectZero;
 	
-	[self.label sizeToFit];
-	[self.label setFrame:CGRectMake(WIDTH_PADDING, HEIGHT_PADDING, [self.label frame].size.width, [self.label frame].size.height + HEIGHT_PADDING)];
-	
-	currentRect.origin.x = self.label.frame.origin.x;
-	if (self.label.frame.size.width > 0) {
-		currentRect.origin.x += self.label.frame.size.width + WIDTH_PADDING;
-	}
+//	[self.label sizeToFit];
+//	[self.label setFrame:CGRectMake(WIDTH_PADDING, HEIGHT_PADDING, [self.label frame].size.width, [self.label frame].size.height + HEIGHT_PADDING)];
+//	
+//	currentRect.origin.x = self.label.frame.origin.x;
+//	if (self.label.frame.size.width > 0) {
+//		currentRect.origin.x += self.label.frame.size.width + WIDTH_PADDING;
+//	}
 	
 	NSMutableArray *lastLineTokens = [NSMutableArray array];
+    CGSize frameSize = self.frame.size;
+    CGFloat x = self.horizontalMargin,y = self.verticalMargin;
     
 	for (UIButton *token in self.tokens)
 	{
-		CGRect frame = [token frame];
+//		CGRect frame = [token frame];
+        CGSize tokenSize = [token sizeThatFits:CGSizeMake(frameSize.width-x, self.lineHeight)];
 		
-		if ((currentRect.origin.x + frame.size.width) > self.frame.size.width)
+		if ((x + tokenSize.width) > frameSize.width)
 		{
 			[lastLineTokens removeAllObjects];
-			currentRect.origin = CGPointMake(WIDTH_PADDING, (currentRect.origin.y + frame.size.height + HEIGHT_PADDING));
+            x = self.horizontalMargin;
+            y = y + self.lineHeight + self.verticalMargin;
+//			currentRect.origin = CGPointMake(WIDTH_PADDING, (currentRect.origin.y + tokenSize.height + HEIGHT_PADDING));
 		}
 		
-		frame.origin.x = currentRect.origin.x;
-		frame.origin.y = currentRect.origin.y + HEIGHT_PADDING;
-		
-		[token setFrame:frame];
+//		frame.origin.x = currentRect.origin.x;
+//		frame.origin.y = currentRect.origin.y + HEIGHT_PADDING;
+        CGRect tokenFrame = CGRectMake(x, y, tokenSize.width, self.lineHeight);
+		token.frame = tokenFrame;
 		
 		if (![token superview])
 		{
@@ -266,41 +277,55 @@
 		}
 		[lastLineTokens addObject:token];
 		
-		currentRect.origin.x += frame.size.width + WIDTH_PADDING;
-		currentRect.size = frame.size;
+//		currentRect.origin.x += frame.size.width + WIDTH_PADDING;
+//		currentRect.size = frame.size;
+        x += tokenSize.width+self.horizontalMargin;
 	}
 	
-	CGRect textFieldFrame = [self.textField frame];
-	
-	textFieldFrame.origin = currentRect.origin;
-	
-	if ((self.frame.size.width - textFieldFrame.origin.x) >= 60)
-	{
-		textFieldFrame.size.width = self.frame.size.width - textFieldFrame.origin.x;
-	}
-	else
-	{
+    CGFloat restWidth = frameSize.width - x;
+    CGRect textFieldFrame = CGRectZero;
+    
+    if (restWidth >= 60) {
+        textFieldFrame.origin = CGPointMake(x, y);
+        textFieldFrame.size = CGSizeMake(restWidth-self.horizontalMargin, self.lineHeight);
+    }
+    else {
 		[lastLineTokens removeAllObjects];
-		textFieldFrame.size.width = self.frame.size.width;
-        textFieldFrame.origin = CGPointMake(WIDTH_PADDING * 2, 
-                                            (currentRect.origin.y + currentRect.size.height + HEIGHT_PADDING));
-	}
+        textFieldFrame.origin = CGPointMake(self.horizontalMargin, y+self.lineHeight+self.verticalMargin);
+        textFieldFrame.size = CGSizeMake(frameSize.width-self.horizontalMargin*2, self.lineHeight);
+    }
+    self.textField.frame = textFieldFrame;
+    
+    CGFloat totalHeight = CGRectGetMaxY(textFieldFrame)+self.verticalMargin;
+//	textFieldFrame.origin = currentRect.origin;
+//	
+//	if ((self.frame.size.width - textFieldFrame.origin.x) >= 60)
+//	{
+//		textFieldFrame.size.width = self.frame.size.width - textFieldFrame.origin.x;
+//	}
+//	else
+//	{
+//		[lastLineTokens removeAllObjects];
+//		textFieldFrame.size.width = self.frame.size.width;
+//        textFieldFrame.origin = CGPointMake(WIDTH_PADDING * 2, 
+//                                            (currentRect.origin.y + currentRect.size.height + HEIGHT_PADDING));
+//	}
 	
-	textFieldFrame.origin.y += HEIGHT_PADDING;
-	[self.textField setFrame:textFieldFrame];
-	CGRect selfFrame = [self frame];
-	selfFrame.size.height = textFieldFrame.origin.y + textFieldFrame.size.height + HEIGHT_PADDING;
+//	textFieldFrame.origin.y += HEIGHT_PADDING;
+//	[self.textField setFrame:textFieldFrame];
+//	CGRect selfFrame = [self frame];
+//	selfFrame.size.height = textFieldFrame.origin.y + textFieldFrame.size.height + self.verticalMargin;
 	
-	CGFloat textFieldMidY = CGRectGetMidY(textFieldFrame);
-	for (UIButton *token in lastLineTokens) {
-		// Center the last line's tokens vertically with the text field
-		CGPoint tokenCenter = token.center;
-		tokenCenter.y = textFieldMidY;
-		token.center = tokenCenter;
-	}
+//	CGFloat textFieldMidY = CGRectGetMidY(textFieldFrame);
+//	for (UIButton *token in lastLineTokens) {
+//		// Center the last line's tokens vertically with the text field
+//		CGPoint tokenCenter = token.center;
+//		tokenCenter.y = textFieldMidY;
+//		token.center = tokenCenter;
+//	}
 	
-    if (fabs(selfFrame.size.height - self.selfHeight) > 0.01) {
-        self.selfHeight = selfFrame.size.height;
+    if (fabs(totalHeight - self.selfHeight) > 0.01) {
+        self.selfHeight = totalHeight;
         
     	__weak JSTokenField *weak_self = self;
         [[NSOperationQueue mainQueue] addOperationWithBlock:^{

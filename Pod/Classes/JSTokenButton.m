@@ -46,8 +46,9 @@
 + (JSTokenButton *)tokenWithString:(NSString *)string representedObject:(id)obj parentField:(JSTokenField *)parentField image:(UIImage *)image selectedImage:(UIImage *)selectedImage;
 {
 	JSTokenButton *button = (JSTokenButton *)[self buttonWithType:UIButtonTypeCustom];
-	[button setNormalBg:[image stretchableImageWithLeftCapWidth:14 topCapHeight:0]];
-	[button setHighlightedBg:[selectedImage stretchableImageWithLeftCapWidth:14 topCapHeight:0]];
+    button.backgroundColor = [UIColor clearColor];
+	[button setNormalBg:image];
+	[button setHighlightedBg:selectedImage];
 	[button setAdjustsImageWhenHighlighted:NO];
 	[button setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
 	[[button titleLabel] setFont:[UIFont fontWithName:@"Helvetica Neue" size:15]];
@@ -56,11 +57,11 @@
 	
 	[button setTitle:string forState:UIControlStateNormal];
 	
-	[button sizeToFit];
-	CGRect frame = [button frame];
-	frame.size.width += 20;
-	frame.size.height = 25;
-	[button setFrame:frame];
+//	[button sizeToFit];
+//	CGRect frame = [button frame];
+//	frame.size.width += 20;
+//	frame.size.height = 25;
+//	[button setFrame:frame];
 	
 	[button setToggled:NO];
 	[button setRepresentedObject:obj];
@@ -124,6 +125,11 @@
 
 - (BOOL)canBecomeFirstResponder {
     return YES;
+}
+
+- (CGSize)sizeThatFits:(CGSize)size {
+    CGSize intrinsicSize = [super sizeThatFits:size];
+    return CGSizeMake(intrinsicSize.width+20, intrinsicSize.height+24);
 }
 
 @end
