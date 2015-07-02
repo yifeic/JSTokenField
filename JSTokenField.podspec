@@ -27,7 +27,7 @@ Pod::Spec.new do |s|
 
   s.source_files = 'JSTokenField/Classes/**/*'
   s.resource_bundles = {
-    'CYFTokenInput' => ['JSTokenField/Assets/*.png']
+    'JSTokenField' => ['JSTokenField/Assets/*.png']
   }
 
   s.public_header_files = 'Pod/Classes/**/*.h'
