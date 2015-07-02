@@ -1,5 +1,5 @@
 #
-# Be sure to run `pod lib lint CYFTokenInput.podspec' to ensure this is a
+# Be sure to run `pod lib lint JSTokenField.podspec' to ensure this is a
 # valid spec and remove all comments before submitting the spec.
 #
 # Any lines starting with a # are optional, but encouraged
@@ -22,10 +22,13 @@ Pod::Spec.new do |s|
   s.source           = { :git => "https://github.com/yifeic/JSTokenField.git", :tag => s.version.to_s }
   # s.social_media_url = 'https://twitter.com/<TWITTER_USERNAME>'
 
-  s.platform     = :ios, '8.0'
+  s.platform     = :ios, '7.0'
   s.requires_arc = true
 
-  s.source_files = 'JSTokenField/Classes/**/*'
+  s.source_files = 'Pod/Classes/**/*'
+  s.resource_bundles = {
+    'JSTokenField' => ['Pod/Assets/*.png']
+  }
 
   s.public_header_files = 'Pod/Classes/**/*.h'
   s.frameworks = 'UIKit'
