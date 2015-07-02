@@ -38,5 +38,6 @@
 @property (nonatomic, readonly) JSTokenField *parentField;
 
 + (JSTokenButton *)tokenWithString:(NSString *)string representedObject:(id)obj parentField:(JSTokenField *)parentField;
++ (JSTokenButton *)tokenWithString:(NSString *)string representedObject:(id)obj parentField:(JSTokenField *)parentField image:(UIImage *)image selectedImage:(UIImage *)selectedImage;
 
 @end

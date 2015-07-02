@@ -37,6 +37,8 @@
 @property (nonatomic, readonly) JSBackspaceReportingTextField *textField;
 @property (nonatomic, readonly) UILabel *label;
 @property (nonatomic, assign) id <JSTokenFieldDelegate> delegate;
+@property (nonatomic, strong) UIImage *tokenImage;
+@property (nonatomic, strong) UIImage *tokenSelectedImage;
 
 - (NSArray *)allTokens;
 

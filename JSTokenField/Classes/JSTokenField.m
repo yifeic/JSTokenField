@@ -214,7 +214,7 @@
 
 - (JSTokenButton *)tokenWithString:(NSString *)string representedObject:(id)obj
 {
-	JSTokenButton *token = [JSTokenButton tokenWithString:string representedObject:obj parentField:self];
+	JSTokenButton *token = [JSTokenButton tokenWithString:string representedObject:obj parentField:self image:self.tokenImage selectedImage:self.tokenSelectedImage];
 	CGRect frame = [token frame];
 	
 	if (frame.size.width > self.frame.size.width)

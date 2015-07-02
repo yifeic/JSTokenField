@@ -46,6 +46,8 @@
 	
 	self.toField = [[JSTokenField alloc] initWithFrame:CGRectMake(0, 0, 320, 31)];
 	[[self.toField label] setText:@"To:"];
+    self.toField.tokenImage = [UIImage imageNamed:@"tokenNormal"];
+    self.toField.tokenSelectedImage = [UIImage imageNamed:@"tokenHighlighted"];
 	[self.toField setDelegate:self];
 	[self.view addSubview:self.toField];
     
