@@ -14,23 +14,16 @@
 		1A1A06A713FEDEEC00CA6645 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A1A06A613FEDEEC00CA6645 /* main.m */; };
 		1A1A06AB13FEDEEC00CA6645 /* DemoAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A1A06AA13FEDEEC00CA6645 /* DemoAppDelegate.m */; };
 		1A1A06AE13FEDEEC00CA6645 /* DemoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A1A06AD13FEDEEC00CA6645 /* DemoViewController.m */; };
-		1A1A06BB13FEE01C00CA6645 /* JSTokenButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A1A06B813FEE01C00CA6645 /* JSTokenButton.m */; };
-		1A1A06BC13FEE01C00CA6645 /* JSTokenField.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A1A06BA13FEE01C00CA6645 /* JSTokenField.m */; };
-		1A1A06C113FEE2D900CA6645 /* tokenHighlighted.png in Resources */ = {isa = PBXBuildFile; fileRef = 1A1A06BD13FEE2D900CA6645 /* tokenHighlighted.png */; };
-		1A1A06C213FEE2D900CA6645 /* tokenHighlighted@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1A1A06BE13FEE2D900CA6645 /* tokenHighlighted@2x.png */; };
-		1A1A06C313FEE2D900CA6645 /* tokenNormal.png in Resources */ = {isa = PBXBuildFile; fileRef = 1A1A06BF13FEE2D900CA6645 /* tokenNormal.png */; };
-		1A1A06C413FEE2D900CA6645 /* tokenNormal@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1A1A06C013FEE2D900CA6645 /* tokenNormal@2x.png */; };
 		1A1A06CF13FF000C00CA6645 /* AddressBook.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1A1A06CD13FF000C00CA6645 /* AddressBook.framework */; };
 		1A1A06D013FF000C00CA6645 /* AddressBookUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1A1A06CE13FF000C00CA6645 /* AddressBookUI.framework */; };
+		57E1870C1B45C0B2008A8AA0 /* JSBackspaceReportingTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = 57E187071B45C0B2008A8AA0 /* JSBackspaceReportingTextField.m */; };
+		57E1870D1B45C0B2008A8AA0 /* JSTokenButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 57E187091B45C0B2008A8AA0 /* JSTokenButton.m */; };
+		57E1870E1B45C0B2008A8AA0 /* JSTokenField.m in Sources */ = {isa = PBXBuildFile; fileRef = 57E1870B1B45C0B2008A8AA0 /* JSTokenField.m */; };
+		57E187151B45C0EA008A8AA0 /* tokenHighlighted@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 57E187111B45C0EA008A8AA0 /* tokenHighlighted@2x.png */; };
+		57E187171B45C0EA008A8AA0 /* tokenNormal@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 57E187131B45C0EA008A8AA0 /* tokenNormal@2x.png */; };
 		751112591A39F76C003EC6C8 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 751112581A39F76C003EC6C8 /* Default-568h@2x.png */; };
 		7511125B1A39F82A003EC6C8 /* Storyboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7511125A1A39F82A003EC6C8 /* Storyboard.storyboard */; };
 		B71650D1144399F800EBF2C7 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1A1A069C13FEDEEC00CA6645 /* Foundation.framework */; };
-		B71650DB14439A0500EBF2C7 /* JSTokenField.h in Headers */ = {isa = PBXBuildFile; fileRef = 1A1A06B913FEE01C00CA6645 /* JSTokenField.h */; };
-		B71650DC14439A0500EBF2C7 /* JSTokenField.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A1A06BA13FEE01C00CA6645 /* JSTokenField.m */; };
-		B71650DD14439A0500EBF2C7 /* JSTokenButton.h in Headers */ = {isa = PBXBuildFile; fileRef = 1A1A06B713FEE01C00CA6645 /* JSTokenButton.h */; };
-		B71650DE14439A0500EBF2C7 /* JSTokenButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A1A06B813FEE01C00CA6645 /* JSTokenButton.m */; };
-		B7A8303716D2D21500E7587F /* JSBackspaceReportingTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = B7A8303616D2D21500E7587F /* JSBackspaceReportingTextField.m */; };
-		B7A8303816D2D2E700E7587F /* JSBackspaceReportingTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = B7A8303616D2D21500E7587F /* JSBackspaceReportingTextField.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -46,21 +39,19 @@
 		1A1A06AA13FEDEEC00CA6645 /* DemoAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DemoAppDelegate.m; sourceTree = "<group>"; };
 		1A1A06AC13FEDEEC00CA6645 /* DemoViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DemoViewController.h; sourceTree = "<group>"; };
 		1A1A06AD13FEDEEC00CA6645 /* DemoViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DemoViewController.m; sourceTree = "<group>"; };
-		1A1A06B713FEE01C00CA6645 /* JSTokenButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JSTokenButton.h; sourceTree = "<group>"; };
-		1A1A06B813FEE01C00CA6645 /* JSTokenButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JSTokenButton.m; sourceTree = "<group>"; };
-		1A1A06B913FEE01C00CA6645 /* JSTokenField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JSTokenField.h; sourceTree = "<group>"; };
-		1A1A06BA13FEE01C00CA6645 /* JSTokenField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JSTokenField.m; sourceTree = "<group>"; usesTabs = 1; };
-		1A1A06BD13FEE2D900CA6645 /* tokenHighlighted.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = tokenHighlighted.png; sourceTree = "<group>"; };
-		1A1A06BE13FEE2D900CA6645 /* tokenHighlighted@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tokenHighlighted@2x.png"; sourceTree = "<group>"; };
-		1A1A06BF13FEE2D900CA6645 /* tokenNormal.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = tokenNormal.png; sourceTree = "<group>"; };
-		1A1A06C013FEE2D900CA6645 /* tokenNormal@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tokenNormal@2x.png"; sourceTree = "<group>"; };
 		1A1A06CD13FF000C00CA6645 /* AddressBook.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AddressBook.framework; path = System/Library/Frameworks/AddressBook.framework; sourceTree = SDKROOT; };
 		1A1A06CE13FF000C00CA6645 /* AddressBookUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AddressBookUI.framework; path = System/Library/Frameworks/AddressBookUI.framework; sourceTree = SDKROOT; };
+		57E187061B45C0B2008A8AA0 /* JSBackspaceReportingTextField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JSBackspaceReportingTextField.h; sourceTree = "<group>"; };
+		57E187071B45C0B2008A8AA0 /* JSBackspaceReportingTextField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JSBackspaceReportingTextField.m; sourceTree = "<group>"; };
+		57E187081B45C0B2008A8AA0 /* JSTokenButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JSTokenButton.h; sourceTree = "<group>"; };
+		57E187091B45C0B2008A8AA0 /* JSTokenButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JSTokenButton.m; sourceTree = "<group>"; };
+		57E1870A1B45C0B2008A8AA0 /* JSTokenField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JSTokenField.h; sourceTree = "<group>"; };
+		57E1870B1B45C0B2008A8AA0 /* JSTokenField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JSTokenField.m; sourceTree = "<group>"; };
+		57E187111B45C0EA008A8AA0 /* tokenHighlighted@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tokenHighlighted@2x.png"; sourceTree = "<group>"; };
+		57E187131B45C0EA008A8AA0 /* tokenNormal@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tokenNormal@2x.png"; sourceTree = "<group>"; };
 		751112581A39F76C003EC6C8 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
 		7511125A1A39F82A003EC6C8 /* Storyboard.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Storyboard.storyboard; sourceTree = "<group>"; };
 		B71650D0144399F800EBF2C7 /* libJSTokenFieldLibrary.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libJSTokenFieldLibrary.a; sourceTree = BUILT_PRODUCTS_DIR; };
-		B7A8303516D2D21500E7587F /* JSBackspaceReportingTextField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JSBackspaceReportingTextField.h; sourceTree = "<group>"; };
-		B7A8303616D2D21500E7587F /* JSBackspaceReportingTextField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JSBackspaceReportingTextField.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -125,14 +116,10 @@
 				1A1A06AA13FEDEEC00CA6645 /* DemoAppDelegate.m */,
 				1A1A06AC13FEDEEC00CA6645 /* DemoViewController.h */,
 				1A1A06AD13FEDEEC00CA6645 /* DemoViewController.m */,
-				1A1A06B913FEE01C00CA6645 /* JSTokenField.h */,
-				1A1A06BA13FEE01C00CA6645 /* JSTokenField.m */,
-				1A1A06B713FEE01C00CA6645 /* JSTokenButton.h */,
-				1A1A06B813FEE01C00CA6645 /* JSTokenButton.m */,
+				57E1870F1B45C0EA008A8AA0 /* Assets */,
+				57E187051B45C0B2008A8AA0 /* Classes */,
 				7511125A1A39F82A003EC6C8 /* Storyboard.storyboard */,
 				1A1A06A113FEDEEC00CA6645 /* Supporting Files */,
-				B7A8303516D2D21500E7587F /* JSBackspaceReportingTextField.h */,
-				B7A8303616D2D21500E7587F /* JSBackspaceReportingTextField.m */,
 			);
 			path = JSTokenField;
 			sourceTree = "<group>";
@@ -144,12 +131,30 @@
 				1A1A06A313FEDEEC00CA6645 /* InfoPlist.strings */,
 				1A1A06A613FEDEEC00CA6645 /* main.m */,
 				1A1A06A813FEDEEC00CA6645 /* JSTokenField-Prefix.pch */,
-				1A1A06BD13FEE2D900CA6645 /* tokenHighlighted.png */,
-				1A1A06BE13FEE2D900CA6645 /* tokenHighlighted@2x.png */,
-				1A1A06BF13FEE2D900CA6645 /* tokenNormal.png */,
-				1A1A06C013FEE2D900CA6645 /* tokenNormal@2x.png */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		57E187051B45C0B2008A8AA0 /* Classes */ = {
+			isa = PBXGroup;
+			children = (
+				57E187061B45C0B2008A8AA0 /* JSBackspaceReportingTextField.h */,
+				57E187071B45C0B2008A8AA0 /* JSBackspaceReportingTextField.m */,
+				57E187081B45C0B2008A8AA0 /* JSTokenButton.h */,
+				57E187091B45C0B2008A8AA0 /* JSTokenButton.m */,
+				57E1870A1B45C0B2008A8AA0 /* JSTokenField.h */,
+				57E1870B1B45C0B2008A8AA0 /* JSTokenField.m */,
+			);
+			path = Classes;
+			sourceTree = "<group>";
+		};
+		57E1870F1B45C0EA008A8AA0 /* Assets */ = {
+			isa = PBXGroup;
+			children = (
+				57E187111B45C0EA008A8AA0 /* tokenHighlighted@2x.png */,
+				57E187131B45C0EA008A8AA0 /* tokenNormal@2x.png */,
+			);
+			path = Assets;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -159,8 +164,6 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B71650DB14439A0500EBF2C7 /* JSTokenField.h in Headers */,
-				B71650DD14439A0500EBF2C7 /* JSTokenButton.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -234,12 +237,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				1A1A06A513FEDEEC00CA6645 /* InfoPlist.strings in Resources */,
-				1A1A06C113FEE2D900CA6645 /* tokenHighlighted.png in Resources */,
-				1A1A06C213FEE2D900CA6645 /* tokenHighlighted@2x.png in Resources */,
-				1A1A06C313FEE2D900CA6645 /* tokenNormal.png in Resources */,
+				57E187171B45C0EA008A8AA0 /* tokenNormal@2x.png in Resources */,
+				57E187151B45C0EA008A8AA0 /* tokenHighlighted@2x.png in Resources */,
 				751112591A39F76C003EC6C8 /* Default-568h@2x.png in Resources */,
 				7511125B1A39F82A003EC6C8 /* Storyboard.storyboard in Resources */,
-				1A1A06C413FEE2D900CA6645 /* tokenNormal@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -251,11 +252,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				1A1A06A713FEDEEC00CA6645 /* main.m in Sources */,
+				57E1870E1B45C0B2008A8AA0 /* JSTokenField.m in Sources */,
+				57E1870D1B45C0B2008A8AA0 /* JSTokenButton.m in Sources */,
 				1A1A06AB13FEDEEC00CA6645 /* DemoAppDelegate.m in Sources */,
 				1A1A06AE13FEDEEC00CA6645 /* DemoViewController.m in Sources */,
-				1A1A06BB13FEE01C00CA6645 /* JSTokenButton.m in Sources */,
-				1A1A06BC13FEE01C00CA6645 /* JSTokenField.m in Sources */,
-				B7A8303716D2D21500E7587F /* JSBackspaceReportingTextField.m in Sources */,
+				57E1870C1B45C0B2008A8AA0 /* JSBackspaceReportingTextField.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -263,9 +264,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B71650DC14439A0500EBF2C7 /* JSTokenField.m in Sources */,
-				B71650DE14439A0500EBF2C7 /* JSTokenButton.m in Sources */,
-				B7A8303816D2D2E700E7587F /* JSBackspaceReportingTextField.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
