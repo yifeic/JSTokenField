@@ -84,7 +84,6 @@
 
 - (void)commonSetup {
     _lineHeight = 30;
-    _lineSpacing = 2;
     _verticalMargin = 2;
     _horizontalMargin = 2;
     
@@ -175,7 +174,12 @@
     }
     [token removeFromSuperview];
     [self.tokens removeObject:token];
-    
+    if ([self.delegate respondsToSelector:@selector(tokenField:didRemoveToken:representedObject:)])
+    {
+        NSString *tokenName = token.label.text;
+        [self.delegate tokenField:self didRemoveToken:tokenName representedObject:token.representedObject];
+    }
+ 
     [self setNeedsLayout];
 }
 
