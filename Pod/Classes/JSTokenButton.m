@@ -51,16 +51,14 @@
     self = [super initWithFrame:CGRectZero];
     if (self) {
         UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
-//        button.backgroundColor = [UIColor clearColor];
-//        [button setTitleColor:[UIColor whiteColor] forState:UIControlStateHighlighted];
-//        [button.titleLabel setLineBreakMode:NSLineBreakByTruncatingTail];
-//        [button setTitle:string forState:UIControlStateNormal];
         [self addSubview:button];
         
         UILabel *label = [[UILabel alloc] initWithFrame:CGRectZero];
         label.text = string;
         label.textColor = textColor;
         label.textAlignment = NSTextAlignmentCenter;
+        label.layer.cornerRadius = 2;
+        label.layer.masksToBounds = YES;
         [self addSubview:label];
         _label = label;
         _button = button;
@@ -107,14 +105,6 @@
 
 #pragma mark - UIKeyInput
 - (void)deleteBackward {
-//    id <JSTokenFieldDelegate> delegate = _parentField.delegate;
-//    if ([delegate respondsToSelector:@selector(tokenField:shouldRemoveToken:representedObject:)]) {
-//        NSString *name = [self.button titleForState:UIControlStateNormal];
-//        BOOL shouldRemove = [delegate tokenField:_parentField shouldRemoveToken:name representedObject:self.representedObject];
-//        if (!shouldRemove) {
-//            return;
-//        }
-//    }
     [_parentField removeToken:self];
 }
 

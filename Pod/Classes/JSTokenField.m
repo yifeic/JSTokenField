@@ -274,7 +274,7 @@
 		{
 			[lastLineTokens removeAllObjects];
             x = self.horizontalMargin;
-            y = y + self.lineHeight + self.verticalMargin;
+            y += self.lineHeight + self.verticalMargin;
 //			currentRect.origin = CGPointMake(WIDTH_PADDING, (currentRect.origin.y + tokenSize.height + HEIGHT_PADDING));
 		}
 		
@@ -298,17 +298,18 @@
     CGRect textFieldFrame = CGRectZero;
     
     if (restWidth >= 60) {
-        textFieldFrame.origin = CGPointMake(x, y);
+        textFieldFrame.origin = CGPointMake(x, y+1);
         textFieldFrame.size = CGSizeMake(restWidth-self.horizontalMargin, self.lineHeight);
     }
     else {
+        y += self.lineHeight + self.verticalMargin;
 		[lastLineTokens removeAllObjects];
-        textFieldFrame.origin = CGPointMake(self.horizontalMargin, y+self.lineHeight+self.verticalMargin);
+        textFieldFrame.origin = CGPointMake(self.horizontalMargin, y+1);
         textFieldFrame.size = CGSizeMake(frameSize.width-self.horizontalMargin*2, self.lineHeight);
     }
     self.textField.frame = textFieldFrame;
     
-    CGFloat totalHeight = CGRectGetMaxY(textFieldFrame)+self.verticalMargin;
+    CGFloat totalHeight = y + self.lineHeight + self.verticalMargin;
 //	textFieldFrame.origin = currentRect.origin;
 //	
 //	if ((self.frame.size.width - textFieldFrame.origin.x) >= 60)
