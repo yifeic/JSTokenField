@@ -107,7 +107,8 @@
     [self.textField setBackground:nil];
 //    [self.textField setBackgroundColor:[UIColor clearColor]];
     [self.textField setContentVerticalAlignment:UIControlContentVerticalAlignmentCenter];
-    
+    self.textField.keyboardType = UIKeyboardTypeEmailAddress;
+    self.textField.autocorrectionType = UITextAutocorrectionTypeNo;
     //		[self.textField.layer setBorderColor:[[UIColor redColor] CGColor]];
     //		[self.textField.layer setBorderWidth:1.0];
     
