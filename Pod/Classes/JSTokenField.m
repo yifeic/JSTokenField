@@ -34,7 +34,9 @@
 
 #define DEFAULT_HEIGHT 31
 
-@interface JSTokenField ()
+@interface JSTokenField () {
+    UIFont *_tokenTextFont;
+}
 
 @property (nonatomic, readwrite) JSBackspaceReportingTextField *textField;
 @property (nonatomic, readwrite) UILabel *label;
@@ -140,88 +142,99 @@
 	}
 }
 
-- (void)removeTokenWithTest:(BOOL (^)(JSTokenButton *token))test {
-    JSTokenButton *tokenToRemove = nil;
-    for (JSTokenButton *token in [self.tokens reverseObjectEnumerator]) {
-        if (test(token)) {
-            tokenToRemove = token;
-            break;
-        }
+//- (void)removeTokenWithTest:(BOOL (^)(JSTokenButton *token))test {
+//    JSTokenButton *tokenToRemove = nil;
+//    for (JSTokenButton *token in [self.tokens reverseObjectEnumerator]) {
+//        if (test(token)) {
+//            tokenToRemove = token;
+//            break;
+//        }
+//    }
+//    
+//    if (tokenToRemove) {
+//        if (tokenToRemove.isFirstResponder) {
+//            [self.textField becomeFirstResponder];
+//        }
+//        [tokenToRemove removeFromSuperview];
+//        
+//        [self.tokens removeObject:tokenToRemove];
+//        if ([self.delegate respondsToSelector:@selector(tokenField:didRemoveToken:representedObject:)])
+//        {
+//				NSString *tokenName = [tokenToRemove titleForState:UIControlStateNormal];
+//				[self.delegate tokenField:self didRemoveToken:tokenName representedObject:tokenToRemove.representedObject];
+//
+//		}
+//	}
+//	
+//	[self setNeedsLayout];
+//}
+
+- (void)removeToken:(JSTokenButton *)token {
+    if (token.isFirstResponder) {
+        [self.textField becomeFirstResponder];
     }
+    [token removeFromSuperview];
+    [self.tokens removeObject:token];
     
-    if (tokenToRemove) {
-        if (tokenToRemove.isFirstResponder) {
-            [self.textField becomeFirstResponder];
-        }
-        [tokenToRemove removeFromSuperview];
-        
-        [self.tokens removeObject:tokenToRemove];
-        if ([self.delegate respondsToSelector:@selector(tokenField:didRemoveToken:representedObject:)])
-        {
-				NSString *tokenName = [tokenToRemove titleForState:UIControlStateNormal];
-				[self.delegate tokenField:self didRemoveToken:tokenName representedObject:tokenToRemove.representedObject];
-
-		}
-	}
-	
-	[self setNeedsLayout];
+    [self setNeedsLayout];
 }
 
-- (void)removeTokenForString:(NSString *)string
-{
-    [self removeTokenWithTest:^BOOL(JSTokenButton *token) {
-        return [[token titleForState:UIControlStateNormal] isEqualToString:string] && [token isToggled];
-    }];
-}
+//- (void)removeTokenForString:(NSString *)string
+//{
+//    [self removeTokenWithTest:^BOOL(JSTokenButton *token) {
+//        return [[token titleForState:UIControlStateNormal] isEqualToString:string] && [token isToggled];
+//    }];
+//}
 
-- (void)removeTokenWithRepresentedObject:(id)representedObject {
-    [self removeTokenWithTest:^BOOL(JSTokenButton *token) {
-        return [[token representedObject] isEqual:representedObject];
-    }];
-}
+//- (void)removeTokenWithRepresentedObject:(id)representedObject {
+//    [self removeTokenWithTest:^BOOL(JSTokenButton *token) {
+//        return [[token representedObject] isEqual:representedObject];
+//    }];
+//}
 
-- (void)removeAllTokens {
-	NSArray *tokensCopy = [self.tokens copy];
-	for (JSTokenButton *button in tokensCopy) {
-		[self removeTokenWithTest:^BOOL(JSTokenButton *token) {
-			return token == button;
-		}];
-	}
-}
+//- (void)removeAllTokens {
+//	NSArray *tokensCopy = [self.tokens copy];
+//	for (JSTokenButton *button in tokensCopy) {
+//		[self removeTokenWithTest:^BOOL(JSTokenButton *token) {
+//			return token == button;
+//		}];
+//	}
+//}
 
-- (void)deleteHighlightedToken
-{
-	for (int i = 0; i < [self.tokens count]; i++)
-	{
-		self.deletedToken = [self.tokens objectAtIndex:i];
-		if ([self.deletedToken isToggled])
-		{
-			NSString *tokenName = [self.deletedToken titleForState:UIControlStateNormal];
-			if ([self.delegate respondsToSelector:@selector(tokenField:shouldRemoveToken:representedObject:)]) {
-				BOOL shouldRemove = [self.delegate tokenField:self
-											shouldRemoveToken:tokenName
-											representedObject:self.deletedToken.representedObject];
-				if (shouldRemove == NO) {
-					return;
-				}
-			}
-			
-			[self.deletedToken removeFromSuperview];
-			[self.tokens removeObject:self.deletedToken];
-			
-			if ([self.delegate respondsToSelector:@selector(tokenField:didRemoveToken:representedObject:)])
-			{
-				[self.delegate tokenField:self didRemoveToken:tokenName representedObject:self.deletedToken.representedObject];
-			}
-			
-			[self setNeedsLayout];	
-		}
-	}
-}
+//- (void)deleteHighlightedToken
+//{
+//	for (int i = 0; i < [self.tokens count]; i++)
+//	{
+//		self.deletedToken = [self.tokens objectAtIndex:i];
+//		if ([self.deletedToken isToggled])
+//		{
+//			NSString *tokenName = [self.deletedToken titleForState:UIControlStateNormal];
+//			if ([self.delegate respondsToSelector:@selector(tokenField:shouldRemoveToken:representedObject:)]) {
+//				BOOL shouldRemove = [self.delegate tokenField:self
+//											shouldRemoveToken:tokenName
+//											representedObject:self.deletedToken.representedObject];
+//				if (shouldRemove == NO) {
+//					return;
+//				}
+//			}
+//			
+//			[self.deletedToken removeFromSuperview];
+//			[self.tokens removeObject:self.deletedToken];
+//			
+//			if ([self.delegate respondsToSelector:@selector(tokenField:didRemoveToken:representedObject:)])
+//			{
+//				[self.delegate tokenField:self didRemoveToken:tokenName representedObject:self.deletedToken.representedObject];
+//			}
+//			
+//			[self setNeedsLayout];	
+//		}
+//	}
+//}
 
 - (JSTokenButton *)tokenWithString:(NSString *)string representedObject:(id)obj
 {
-	JSTokenButton *token = [JSTokenButton tokenWithString:string representedObject:obj parentField:self image:self.tokenImage selectedImage:self.tokenSelectedImage];
+	JSTokenButton *token = [JSTokenButton tokenWithString:string representedObject:obj parentField:self textColor:self.tokenTextColor selectedTextColor:self.tokenTextSelectedColor selectedBackgroundColor:self.tokenSelectedBackgroundColor];
+
 	CGRect frame = [token frame];
 	
 	if (frame.size.width > self.frame.size.width)
@@ -231,7 +244,7 @@
 	
 	[token setFrame:frame];
 	
-	[token addTarget:self
+	[token.button addTarget:self
 			  action:@selector(toggle:)
 	forControlEvents:UIControlEventTouchUpInside];
 	
@@ -240,8 +253,6 @@
 
 - (void)layoutSubviews
 {
-	CGRect currentRect = CGRectZero;
-	
 //	[self.label sizeToFit];
 //	[self.label setFrame:CGRectMake(WIDTH_PADDING, HEIGHT_PADDING, [self.label frame].size.width, [self.label frame].size.height + HEIGHT_PADDING)];
 //	
@@ -343,12 +354,20 @@
 {
 	for (JSTokenButton *token in self.tokens)
 	{
-		[token setToggled:NO];
+        if (token.button == sender) {
+            [token becomeFirstResponder];
+            break;
+        }
 	}
-	
-	JSTokenButton *token = (JSTokenButton *)sender;
-	[token setToggled:YES];
-    [token becomeFirstResponder];
+}
+
+- (UIFont *)tokenTextFont {
+    return _tokenTextFont;
+}
+
+- (void)setTokenTextFont:(UIFont *)tokenTextFont {
+    _tokenTextFont = tokenTextFont;
+    self.textField.font = tokenTextFont;
 }
 
 #pragma mark -
@@ -371,7 +390,7 @@
 		}
 		
 		
-		NSString *name = [token titleForState:UIControlStateNormal];
+		NSString *name = token.label.text;
 		// If we don't allow deleting the token, don't even bother letting it highlight
 		BOOL responds = [self.delegate respondsToSelector:@selector(tokenField:shouldRemoveToken:representedObject:)];
 		if (responds == NO || [self.delegate tokenField:self shouldRemoveToken:name representedObject:token.representedObject])

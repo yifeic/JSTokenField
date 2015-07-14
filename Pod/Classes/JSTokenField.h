@@ -39,6 +39,10 @@
 @property (nonatomic, assign) id <JSTokenFieldDelegate> delegate;
 @property (nonatomic, strong) UIImage *tokenImage;
 @property (nonatomic, strong) UIImage *tokenSelectedImage;
+@property (nonatomic, strong) UIFont *tokenTextFont;
+@property (nonatomic, strong) UIColor *tokenTextColor;
+@property (nonatomic, strong) UIColor *tokenTextSelectedColor;
+@property (nonatomic, strong) UIColor *tokenSelectedBackgroundColor;
 @property (nonatomic) CGFloat lineHeight;
 @property (nonatomic) CGFloat verticalMargin;
 @property (nonatomic) CGFloat horizontalMargin;
@@ -47,9 +51,10 @@
 - (NSArray *)allTokens;
 
 - (void)addTokenWithTitle:(NSString *)string representedObject:(id)obj;
-- (void)removeTokenForString:(NSString *)string;
-- (void)removeTokenWithRepresentedObject:(id)representedObject;
-- (void)removeAllTokens;
+//- (void)removeTokenForString:(NSString *)string;
+//- (void)removeTokenWithRepresentedObject:(id)representedObject;
+//- (void)removeAllTokens;
+- (void)removeToken:(JSTokenButton *)token;
 
 @end
 

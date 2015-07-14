@@ -23,7 +23,11 @@
     self.field.delegate = self;
     self.field.tokenImage = [[UIImage imageNamed:@"tokenNormal"] stretchableImageWithLeftCapWidth:14 topCapHeight:0];
     self.field.tokenSelectedImage = [[UIImage imageNamed:@"tokenSelected"] stretchableImageWithLeftCapWidth:14 topCapHeight:0];
-    
+//    self.field.tokenTextFont = [UIFont fontWithName:@"Cochin" size:13];
+    self.field.lineHeight = 30;
+    self.field.tokenTextColor = [UIColor blueColor];
+    self.field.tokenTextSelectedColor = [UIColor whiteColor];
+    self.field.tokenSelectedBackgroundColor = [UIColor brownColor];
 }
 
 #pragma mark JSTokenFieldDelegate

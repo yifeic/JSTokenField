@@ -29,15 +29,16 @@
 #import <UIKit/UIKit.h>
 @class JSTokenField;
 
-@interface JSTokenButton : UIButton <UIKeyInput>
+@interface JSTokenButton : UIView <UIKeyInput>
 
 @property (nonatomic, getter=isToggled) BOOL toggled;
 @property (nonatomic, strong) UIImage *normalBg;
 @property (nonatomic, strong) UIImage *highlightedBg;
 @property (nonatomic, readonly) id representedObject;
 @property (nonatomic, readonly) JSTokenField *parentField;
+@property (nonatomic, strong, readonly) UIButton *button;
+@property (nonatomic, strong, readonly) UILabel *label;
 
-+ (JSTokenButton *)tokenWithString:(NSString *)string representedObject:(id)obj parentField:(JSTokenField *)parentField;
-+ (JSTokenButton *)tokenWithString:(NSString *)string representedObject:(id)obj parentField:(JSTokenField *)parentField image:(UIImage *)image selectedImage:(UIImage *)selectedImage;
++ (JSTokenButton *)tokenWithString:(NSString *)string representedObject:(id)obj parentField:(JSTokenField *)parentField textColor:(UIColor *)textColor selectedTextColor:(UIColor *)selectedTextColor selectedBackgroundColor:(UIColor *)selectedBackgroundColor;
 
 @end

@@ -32,42 +32,45 @@
 
 @interface JSTokenButton ()
 
-@property (nonatomic, strong, readwrite) id representedObject;
-@property (nonatomic, strong, readwrite) JSTokenField *parentField;
+@property (nonatomic, strong) id representedObject;
+@property (nonatomic, strong) JSTokenField *parentField;
+@property (nonatomic, strong) UIColor *textColor;
+@property (nonatomic, strong) UIColor *selectedTextColor;
+@property (nonatomic, strong) UIColor *selectedBackgroundColor;
 
 @end
 
 @implementation JSTokenButton
 
-+ (JSTokenButton *)tokenWithString:(NSString *)string representedObject:(id)obj parentField:(JSTokenField *)parentField {
-    return [self tokenWithString:string representedObject:obj parentField:parentField image:nil selectedImage:nil];
++ (JSTokenButton *)tokenWithString:(NSString *)string representedObject:(id)obj parentField:(JSTokenField *)parentField textColor:(UIColor *)textColor selectedTextColor:(UIColor *)selectedTextColor selectedBackgroundColor:(UIColor *)selectedBackgroundColor;
+{
+    return [[JSTokenButton alloc] initWithString:string representedObject:obj parentField:parentField textColor:textColor selectedTextColor:selectedTextColor selectedBackgroundColor:selectedBackgroundColor];
 }
 
-+ (JSTokenButton *)tokenWithString:(NSString *)string representedObject:(id)obj parentField:(JSTokenField *)parentField image:(UIImage *)image selectedImage:(UIImage *)selectedImage;
-{
-	JSTokenButton *button = (JSTokenButton *)[self buttonWithType:UIButtonTypeCustom];
-    button.backgroundColor = [UIColor clearColor];
-	[button setNormalBg:image];
-	[button setHighlightedBg:selectedImage];
-	[button setAdjustsImageWhenHighlighted:NO];
-	[button setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
-	[[button titleLabel] setFont:[UIFont fontWithName:@"Helvetica Neue" size:15]];
-	[[button titleLabel] setLineBreakMode:NSLineBreakByTruncatingTail];
-	[button setTitleEdgeInsets:UIEdgeInsetsMake(2, 10, 0, 10)];
-	
-	[button setTitle:string forState:UIControlStateNormal];
-	
-//	[button sizeToFit];
-//	CGRect frame = [button frame];
-//	frame.size.width += 20;
-//	frame.size.height = 25;
-//	[button setFrame:frame];
-	
-	[button setToggled:NO];
-	[button setRepresentedObject:obj];
-    [button setParentField:parentField];
-	
-	return button;
+- (instancetype)initWithString:(NSString *)string representedObject:(id)obj parentField:(JSTokenField *)parentField textColor:(UIColor *)textColor selectedTextColor:(UIColor *)selectedTextColor selectedBackgroundColor:(UIColor *)selectedBackgroundColor {
+    self = [super initWithFrame:CGRectZero];
+    if (self) {
+        UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
+//        button.backgroundColor = [UIColor clearColor];
+//        [button setTitleColor:[UIColor whiteColor] forState:UIControlStateHighlighted];
+//        [button.titleLabel setLineBreakMode:NSLineBreakByTruncatingTail];
+//        [button setTitle:string forState:UIControlStateNormal];
+        [self addSubview:button];
+        
+        UILabel *label = [[UILabel alloc] initWithFrame:CGRectZero];
+        label.text = string;
+        label.textColor = textColor;
+        label.textAlignment = NSTextAlignmentCenter;
+        [self addSubview:label];
+        _label = label;
+        _button = button;
+        _parentField = parentField;
+        _representedObject = obj;
+        _textColor = textColor;
+        _selectedTextColor = selectedTextColor;
+        _selectedBackgroundColor = selectedBackgroundColor;
+    }
+    return self;
 }
 
 - (void)setToggled:(BOOL)toggled
@@ -76,13 +79,13 @@
 	
 	if (_toggled)
 	{
-		[self setBackgroundImage:self.highlightedBg forState:UIControlStateNormal];
-		[self setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+        self.label.textColor = self.selectedTextColor;
+        self.label.backgroundColor = self.selectedBackgroundColor;
 	}
 	else
 	{
-		[self setBackgroundImage:self.normalBg forState:UIControlStateNormal];
-		[self setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+        self.label.textColor = self.textColor;
+        self.label.backgroundColor = [UIColor clearColor];
 	}
 }
 
@@ -104,15 +107,15 @@
 
 #pragma mark - UIKeyInput
 - (void)deleteBackward {
-    id <JSTokenFieldDelegate> delegate = _parentField.delegate;
-    if ([delegate respondsToSelector:@selector(tokenField:shouldRemoveToken:representedObject:)]) {
-        NSString *name = [self titleForState:UIControlStateNormal];
-        BOOL shouldRemove = [delegate tokenField:_parentField shouldRemoveToken:name representedObject:self.representedObject];
-        if (!shouldRemove) {
-            return;
-        }
-    }
-    [_parentField removeTokenForString:[self titleForState:UIControlStateNormal]];
+//    id <JSTokenFieldDelegate> delegate = _parentField.delegate;
+//    if ([delegate respondsToSelector:@selector(tokenField:shouldRemoveToken:representedObject:)]) {
+//        NSString *name = [self.button titleForState:UIControlStateNormal];
+//        BOOL shouldRemove = [delegate tokenField:_parentField shouldRemoveToken:name representedObject:self.representedObject];
+//        if (!shouldRemove) {
+//            return;
+//        }
+//    }
+    [_parentField removeToken:self];
 }
 
 - (BOOL)hasText {
@@ -122,14 +125,28 @@
     return;
 }
 
+- (UITextAutocorrectionType)autocorrectionType {
+    return UITextAutocorrectionTypeNo;
+}
 
 - (BOOL)canBecomeFirstResponder {
     return YES;
 }
 
 - (CGSize)sizeThatFits:(CGSize)size {
-    CGSize intrinsicSize = [super sizeThatFits:size];
-    return CGSizeMake(intrinsicSize.width+20, intrinsicSize.height+24);
+    CGSize intrinsicSize = [self.label sizeThatFits:size];
+    return CGSizeMake(intrinsicSize.width+6, intrinsicSize.height);
+}
+
+- (void)layoutSubviews {
+    CGRect bounds = self.frame;
+    bounds.origin = CGPointZero;
+    self.button.frame = bounds;
+    
+    CGSize labelSize = [self.label sizeThatFits:self.bounds.size];
+    bounds.origin.y = (bounds.size.height - labelSize.height) / 2;
+    bounds.size.height = labelSize.height;
+    self.label.frame = bounds;
 }
 
 @end
