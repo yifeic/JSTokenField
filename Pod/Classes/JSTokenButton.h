@@ -39,6 +39,6 @@
 @property (nonatomic, strong, readonly) UIButton *button;
 @property (nonatomic, strong, readonly) UILabel *label;
 
-+ (JSTokenButton *)tokenWithString:(NSString *)string representedObject:(id)obj parentField:(JSTokenField *)parentField textFont:(UIFont *)textFont textColor:(UIColor *)textColor selectedTextColor:(UIColor *)selectedTextColor selectedBackgroundColor:(UIColor *)selectedBackgroundColor;
++ (JSTokenButton *)tokenWithString:(NSString *)string representedObject:(id)obj parentField:(JSTokenField *)parentField textFont:(UIFont *)textFont textColor:(UIColor *)textColor selectedTextColor:(UIColor *)selectedTextColor selectedBackgroundColor:(UIColor *)selectedBackgroundColor borderColor:(UIColor *)borderColor;
 
 @end

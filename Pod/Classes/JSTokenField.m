@@ -46,7 +46,6 @@
 @property (nonatomic) CGFloat selfHeight;
 
 - (JSTokenButton *)tokenWithString:(NSString *)string representedObject:(id)obj;
-- (void)deleteHighlightedToken;
 - (void)commonSetup;
 
 @end
@@ -205,39 +204,9 @@
 //	}
 //}
 
-//- (void)deleteHighlightedToken
-//{
-//	for (int i = 0; i < [self.tokens count]; i++)
-//	{
-//		self.deletedToken = [self.tokens objectAtIndex:i];
-//		if ([self.deletedToken isToggled])
-//		{
-//			NSString *tokenName = [self.deletedToken titleForState:UIControlStateNormal];
-//			if ([self.delegate respondsToSelector:@selector(tokenField:shouldRemoveToken:representedObject:)]) {
-//				BOOL shouldRemove = [self.delegate tokenField:self
-//											shouldRemoveToken:tokenName
-//											representedObject:self.deletedToken.representedObject];
-//				if (shouldRemove == NO) {
-//					return;
-//				}
-//			}
-//			
-//			[self.deletedToken removeFromSuperview];
-//			[self.tokens removeObject:self.deletedToken];
-//			
-//			if ([self.delegate respondsToSelector:@selector(tokenField:didRemoveToken:representedObject:)])
-//			{
-//				[self.delegate tokenField:self didRemoveToken:tokenName representedObject:self.deletedToken.representedObject];
-//			}
-//			
-//			[self setNeedsLayout];	
-//		}
-//	}
-//}
-
 - (JSTokenButton *)tokenWithString:(NSString *)string representedObject:(id)obj
 {
-    JSTokenButton *token = [JSTokenButton tokenWithString:string representedObject:obj parentField:self textFont:self.tokenTextFont textColor:self.tokenTextColor selectedTextColor:self.tokenTextSelectedColor selectedBackgroundColor:self.tokenSelectedBackgroundColor];
+    JSTokenButton *token = [JSTokenButton tokenWithString:string representedObject:obj parentField:self textFont:self.tokenTextFont textColor:self.tokenTextColor selectedTextColor:self.tokenTextSelectedColor selectedBackgroundColor:self.tokenSelectedBackgroundColor borderColor:self.tokenBorderColor];
 
 	CGRect frame = [token frame];
 	

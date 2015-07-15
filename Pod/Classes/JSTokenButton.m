@@ -35,7 +35,6 @@
 @property (nonatomic, strong) id representedObject;
 @property (nonatomic, strong) JSTokenField *parentField;
 @property (nonatomic, strong) UIColor *textColor;
-@property (nonatomic, strong) UIFont *textFont;
 @property (nonatomic, strong) UIColor *selectedTextColor;
 @property (nonatomic, strong) UIColor *selectedBackgroundColor;
 
@@ -43,12 +42,12 @@
 
 @implementation JSTokenButton
 
-+ (JSTokenButton *)tokenWithString:(NSString *)string representedObject:(id)obj textFont:(UIFont *)textFont parentField:(JSTokenField *)parentField textColor:(UIColor *)textColor selectedTextColor:(UIColor *)selectedTextColor selectedBackgroundColor:(UIColor *)selectedBackgroundColor;
++ (JSTokenButton *)tokenWithString:(NSString *)string representedObject:(id)obj parentField:(JSTokenField *)parentField textFont:(UIFont *)textFont textColor:(UIColor *)textColor selectedTextColor:(UIColor *)selectedTextColor selectedBackgroundColor:(UIColor *)selectedBackgroundColor borderColor:(UIColor *)borderColor
 {
-    return [[JSTokenButton alloc] initWithString:string representedObject:obj parentField:parentField textFont:textFont textColor:textColor selectedTextColor:selectedTextColor selectedBackgroundColor:selectedBackgroundColor];
+    return [[JSTokenButton alloc] initWithString:string representedObject:obj parentField:parentField textFont:textFont textColor:textColor selectedTextColor:selectedTextColor selectedBackgroundColor:selectedBackgroundColor borderColor:borderColor];
 }
 
-- (instancetype)initWithString:(NSString *)string representedObject:(id)obj parentField:(JSTokenField *)parentField textFont:(UIFont *)textFont textColor:(UIColor *)textColor selectedTextColor:(UIColor *)selectedTextColor selectedBackgroundColor:(UIColor *)selectedBackgroundColor {
+- (instancetype)initWithString:(NSString *)string representedObject:(id)obj parentField:(JSTokenField *)parentField textFont:(UIFont *)textFont textColor:(UIColor *)textColor selectedTextColor:(UIColor *)selectedTextColor selectedBackgroundColor:(UIColor *)selectedBackgroundColor borderColor:(UIColor *)borderColor {
     self = [super initWithFrame:CGRectZero];
     if (self) {
         UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
@@ -58,6 +57,13 @@
         label.text = string;
         label.textColor = textColor;
         label.textAlignment = NSTextAlignmentCenter;
+        if (textFont) {
+            label.font = textFont;
+        }
+        if (borderColor) {
+            label.layer.borderColor = borderColor.CGColor;
+            label.layer.borderWidth = 1;
+        }
         label.layer.cornerRadius = 2;
         label.layer.masksToBounds = YES;
         [self addSubview:label];
@@ -66,7 +72,6 @@
         _parentField = parentField;
         _representedObject = obj;
         _textColor = textColor;
-        _textFont = textFont;
         _selectedTextColor = selectedTextColor;
         _selectedBackgroundColor = selectedBackgroundColor;
     }

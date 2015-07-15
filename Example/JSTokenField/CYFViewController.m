@@ -26,6 +26,7 @@
     self.field.tokenTextColor = [UIColor blueColor];
     self.field.tokenTextSelectedColor = [UIColor whiteColor];
     self.field.tokenSelectedBackgroundColor = [UIColor brownColor];
+    self.field.tokenBorderColor = [UIColor greenColor];
 }
 
 #pragma mark JSTokenFieldDelegate

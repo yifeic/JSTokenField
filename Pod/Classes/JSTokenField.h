@@ -41,6 +41,7 @@
 @property (nonatomic, strong) UIColor *tokenTextColor;
 @property (nonatomic, strong) UIColor *tokenTextSelectedColor;
 @property (nonatomic, strong) UIColor *tokenSelectedBackgroundColor;
+@property (nonatomic, strong) UIColor *tokenBorderColor;
 @property (nonatomic) CGFloat lineHeight;
 @property (nonatomic) CGFloat verticalMargin;
 @property (nonatomic) CGFloat horizontalMargin;
