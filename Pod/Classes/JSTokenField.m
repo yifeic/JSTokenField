@@ -390,17 +390,4 @@
 	return NO;
 }
 
-- (void)textFieldDidEndEditing:(UITextField *)textField
-{
-    if ([self.delegate respondsToSelector:@selector(tokenFieldDidEndEditing:)]) {
-        [self.delegate tokenFieldDidEndEditing:self];
-        return;
-    }
-    else if ([[textField text] length] > 1)
-    {
-        [self addTokenWithTitle:[textField text] representedObject:[textField text]];
-        [textField setText:nil];
-    }
-}
-
 @end
