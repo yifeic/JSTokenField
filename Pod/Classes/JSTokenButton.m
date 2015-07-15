@@ -85,12 +85,12 @@
 	if (_toggled)
 	{
         self.label.textColor = self.selectedTextColor;
-        self.label.backgroundColor = self.selectedBackgroundColor;
+        self.backgroundColor = self.selectedBackgroundColor;
 	}
 	else
 	{
         self.label.textColor = self.textColor;
-        self.label.backgroundColor = [UIColor clearColor];
+        self.backgroundColor = [UIColor clearColor];
 	}
 }
 
