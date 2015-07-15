@@ -45,6 +45,7 @@
 @property (nonatomic) CGFloat lineHeight;
 @property (nonatomic) CGFloat verticalMargin;
 @property (nonatomic) CGFloat horizontalMargin;
+@property (nonatomic, strong) NSString *placeholderText;
 
 - (NSArray *)allTokens;
 

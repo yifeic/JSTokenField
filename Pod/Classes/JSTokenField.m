@@ -130,6 +130,7 @@
 	{
 		JSTokenButton *token = [self tokenWithString:aString representedObject:obj];
 		[self.tokens addObject:token];
+        [self addSubview:token];
 		
 		if ([self.delegate respondsToSelector:@selector(tokenField:didAddToken:representedObject:)])
 		{
@@ -271,10 +272,6 @@
         CGRect tokenFrame = CGRectMake(x, y, tokenWidth, lineHeight);
 		token.frame = tokenFrame;
 		
-		if (![token superview])
-		{
-			[self addSubview:token];
-		}
 		[lastLineTokens addObject:token];
 		
         x += tokenWidth+self.horizontalMargin;
