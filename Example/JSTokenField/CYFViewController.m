@@ -29,6 +29,8 @@
     self.field.tokenTextSelectedColor = [UIColor whiteColor];
     self.field.tokenSelectedBackgroundColor = [UIColor brownColor];
     self.field.tokenBorderColor = [UIColor greenColor];
+    
+    self.field.placeholderText = @"Enter email";
 }
 
 #pragma mark JSTokenFieldDelegate

@@ -36,6 +36,7 @@
 
 @interface JSTokenField () {
     UIFont *_tokenTextFont;
+    NSString *_placeholderText;
 }
 
 @property (nonatomic, readwrite) JSBackspaceReportingTextField *textField;
@@ -136,6 +137,8 @@
 		{
 			[self.delegate tokenField:self didAddToken:aString representedObject:obj];
 		}
+        
+        self.textField.placeholder = nil;
 		
 		[self setNeedsLayout];
 	}
@@ -174,6 +177,11 @@
     }
     [token removeFromSuperview];
     [self.tokens removeObject:token];
+    
+    if (self.tokens.count == 0) {
+        self.textField.placeholder = self.placeholderText;
+    }
+    
     if ([self.delegate respondsToSelector:@selector(tokenField:didRemoveToken:representedObject:)])
     {
         NSString *tokenName = token.label.text;
@@ -325,6 +333,18 @@
     _tokenTextFont = tokenTextFont;
     self.textField.font = tokenTextFont;
 }
+
+- (void)setPlaceholderText:(NSString *)placeholderText {
+    _placeholderText = placeholderText;
+    if (self.tokens.count == 0) {
+        self.textField.placeholder = placeholderText;
+    }
+}
+
+- (NSString *)placeholderText {
+    return _placeholderText;
+}
+
 
 #pragma mark -
 #pragma mark UITextFieldDelegate
