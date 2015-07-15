@@ -237,7 +237,7 @@
 
 - (JSTokenButton *)tokenWithString:(NSString *)string representedObject:(id)obj
 {
-	JSTokenButton *token = [JSTokenButton tokenWithString:string representedObject:obj parentField:self textColor:self.tokenTextColor selectedTextColor:self.tokenTextSelectedColor selectedBackgroundColor:self.tokenSelectedBackgroundColor];
+    JSTokenButton *token = [JSTokenButton tokenWithString:string representedObject:obj parentField:self textFont:self.tokenTextFont textColor:self.tokenTextColor selectedTextColor:self.tokenTextSelectedColor selectedBackgroundColor:self.tokenSelectedBackgroundColor];
 
 	CGRect frame = [token frame];
 	
