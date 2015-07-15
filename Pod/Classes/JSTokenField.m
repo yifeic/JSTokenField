@@ -86,7 +86,7 @@
     _verticalMargin = 2;
     _horizontalMargin = 2;
     
-    [self setBackgroundColor:[UIColor colorWithRed:0.9 green:0.9 blue:0.9 alpha:1.0]];
+//    [self setBackgroundColor:[UIColor colorWithRed:0.9 green:0.9 blue:0.9 alpha:1.0]];
     
 //    self.label = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 0, DEFAULT_HEIGHT)];
 //    [self.label setBackgroundColor:[UIColor clearColor]];
