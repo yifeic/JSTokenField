@@ -61,11 +61,11 @@
             label.font = textFont;
         }
         if (borderColor) {
-            label.layer.borderColor = borderColor.CGColor;
-            label.layer.borderWidth = 1;
+            self.layer.borderColor = borderColor.CGColor;
+            self.layer.borderWidth = 1;
         }
-        label.layer.cornerRadius = 2;
-        label.layer.masksToBounds = YES;
+        self.layer.cornerRadius = 2;
+        self.layer.masksToBounds = YES;
         [self addSubview:label];
         _label = label;
         _button = button;
@@ -132,7 +132,7 @@
 
 - (CGSize)sizeThatFits:(CGSize)size {
     CGSize intrinsicSize = [self.label sizeThatFits:size];
-    return CGSizeMake(intrinsicSize.width+6, intrinsicSize.height);
+    return CGSizeMake(intrinsicSize.width+10, intrinsicSize.height);
 }
 
 - (void)layoutSubviews {
@@ -143,6 +143,7 @@
     CGSize labelSize = [self.label sizeThatFits:self.bounds.size];
     bounds.origin.y = (bounds.size.height - labelSize.height) / 2;
     bounds.size.height = labelSize.height;
+
     self.label.frame = bounds;
 }
 

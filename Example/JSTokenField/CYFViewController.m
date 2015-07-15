@@ -22,7 +22,9 @@
     [super viewDidLoad];
     self.field.delegate = self;
 //    self.field.tokenTextFont = [UIFont fontWithName:@"Cochin" size:13];
-    self.field.lineHeight = 30;
+    self.field.lineHeight = 25;
+    self.field.verticalMargin = 5;
+    self.field.horizontalMargin = 5;
     self.field.tokenTextColor = [UIColor blueColor];
     self.field.tokenTextSelectedColor = [UIColor whiteColor];
     self.field.tokenSelectedBackgroundColor = [UIColor brownColor];
